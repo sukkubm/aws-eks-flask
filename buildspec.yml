@@ -19,7 +19,7 @@ phases:
         - $(aws ecr get-login --no-include-email)
         - export KUBECONFIG=$HOME/.kube/config
         - pip3 install -r ./app/requirements.txt
-        - python3 -m pytest ./app
+        - python3 -m pytest ./app/test_main.py
   build:
     commands:
       - docker build --tag $REPOSITORY_URI:$TAG .
