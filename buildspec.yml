@@ -22,7 +22,7 @@ phases:
         - python --version
         - python3 --version
         - alias python=python3
-        - pytest --version
+        - python3 -m pytest --version
         - python3 -m pytest ./app/test_main.py
   build:
     commands:
