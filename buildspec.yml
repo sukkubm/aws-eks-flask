@@ -19,10 +19,7 @@ phases:
         - $(aws ecr get-login --no-include-email)
         - export KUBECONFIG=$HOME/.kube/config
         - cd app
-        - pip3 install -r requirements.txt
-        - python --version
-        - python3 --version
-        - alias python=python3
+        - pip3 install -r requirements.txt    
         - python3 -m pytest --version
         - python3 -m pytest test_main.py
   build:
