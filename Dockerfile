@@ -1,4 +1,4 @@
-FROM python:stretch
+FROM python:3.8.1-slim-buster
 
 COPY ./app /app
 WORKDIR /app
