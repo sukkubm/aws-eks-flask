@@ -13,6 +13,9 @@ phases:
       - export PATH=$PWD/:$PATH
       - git clone https://github.com/pyenv/pyenv.git ~/.pyenv
       - export PYENV_ROOT=~/.pyenv
+      - export PATH=$PYENV_ROOT/bin:$PATH
+      - pyenv init
+      - pyenv install 3.8.1
       - echo $0
       - apt-get update && apt-get -y install jq python3-pip python3-dev && pip3 install --upgrade awscli
   pre_build:
@@ -22,11 +25,15 @@ phases:
         - $(aws ecr get-login --no-include-email)
         - export KUBECONFIG=$HOME/.kube/config
         - cd app
+        - export PYENV_ROOT=~/.pyenv
+        - export PATH=$PYENV_ROOT/bin:$PATH
+        - pyenv init
+        - python -m venv ./venv
+        - source ./venv/bin/activate
         - python --version
-        - python3 --version
-        - pip3 install -r requirements.txt    
-        - python3 -m pytest --version
-        - python3 -m pytest test_main.py
+        - pip install -r requirements.txt  
+        - pytest --version
+        - pytest test_main.py
   build:
     commands:
       - docker build --tag $REPOSITORY_URI:$TAG .
