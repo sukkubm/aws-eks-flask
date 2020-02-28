@@ -11,8 +11,8 @@ phases:
       - curl -sS -o kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/kubectl
       - chmod +x ./kubectl ./aws-iam-authenticator
       - export PATH=$PWD/:$PATH
-      - git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-      - export PYENV_ROOT=~/.pyenv
+      - git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
+      - export PYENV_ROOT=$HOME/.pyenv
       - export PATH=$PYENV_ROOT/bin:$PATH
       - echo $PYENV_ROOT
       - echo $PATH
@@ -28,7 +28,7 @@ phases:
         - $(aws ecr get-login --no-include-email)
         - export KUBECONFIG=$HOME/.kube/config
         - cd app
-        - export PYENV_ROOT=~/.pyenv
+        - export PYENV_ROOT=$HOME/.pyenv
         - export PATH=$PYENV_ROOT/bin:$PATH
         - pyenv init
         - python -m venv ./venv
