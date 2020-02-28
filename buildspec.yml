@@ -16,10 +16,7 @@ phases:
       - export PATH=$PYENV_ROOT/bin:$PATH
       - echo $PYENV_ROOT
       - echo $PATH
-      - ls ~/
-      - pyenv init
       - pyenv install 3.8.1
-      - echo $0
       - apt-get update && apt-get -y install jq python3-pip python3-dev && pip3 install --upgrade awscli
   pre_build:
       commands:
@@ -30,7 +27,6 @@ phases:
         - cd app
         - export PYENV_ROOT=$HOME/.pyenv
         - export PATH=$PYENV_ROOT/bin:$PATH
-        - pyenv init
         - python -m venv ./venv
         - source ./venv/bin/activate
         - python --version
