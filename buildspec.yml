@@ -25,7 +25,6 @@ phases:
         - pytest ./app
   build:
     commands:
-      - echo $REPOSITORY_URI:$TAG
       - docker --version
       - docker build --tag $REPOSITORY_URI:$TAG .
 
